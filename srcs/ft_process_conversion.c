@@ -1,51 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_process_conversion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 10:57:00 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/10 11:15:09 by abourin          ###   ########.fr       */
+/*   Created: 2019/10/12 14:59:47 by abourin           #+#    #+#             */
+/*   Updated: 2019/10/15 11:31:16 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../incl/printf.h"
 
-void	ft_putchar(char c)
+void	ft_process_conversion(char conv, t_segment *seg, va_list ap)
 {
-	write(1, &c, 1);
-}
+	t_converter		*convert;
 
-void	ft_putstr(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-
-void	ft_putnbr(int n)
-{
-	long int	nb;
-
-	nb = n;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = nb * -1;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	if (nb < 10)
-	{
-		ft_putchar('0' + nb);
-	}
+	if (!(convert = ft_get_converter(conv)))
+		return ;
+	if (convert->converter)
+		convert->converter(seg, convert, ap);
+	free(convert);
 }

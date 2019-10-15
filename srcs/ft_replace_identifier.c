@@ -6,18 +6,18 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 13:54:18 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/11 15:12:06 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/15 09:13:02 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../incl/printf.h"
 
-int		ft_get_int_char_size(unsigned long int n)
+int		ft_get_int_char_size(int n)
 {
 	int		count;
 
 	count = 1;
-	while (n > 10)
+	while (n >= 10)
 	{
 		n = n / 10;
 		count++;
@@ -25,7 +25,7 @@ int		ft_get_int_char_size(unsigned long int n)
 	return (count);
 }
 
-char	*ft_rewrite_str_value(char *str, unsigned long int n, int to_allow)
+char	*ft_rewrite_str_value(char *str, long int n, int to_allow)
 {
 	char	*result;
 	int		i;
@@ -43,7 +43,7 @@ char	*ft_rewrite_str_value(char *str, unsigned long int n, int to_allow)
 		if (str[i] == '*' && !replaced)
 		{
 			x = to_allow;
-			while (n > 10)
+			while (n >= 10)
 			{
 				result[j + x - 1] = (n % 10) + 48;
 				n = n / 10;
@@ -61,26 +61,31 @@ char	*ft_rewrite_str_value(char *str, unsigned long int n, int to_allow)
 		i++;
 	}
 	result[j] = '\0';
+	free(str);
 	return (result);
 }
 
-char	*ft_replace_identifier(char *str, int size_max, va_list ap)
+char	*ft_replace_identifier(char *str, va_list ap)
 {
 	int						i;
-	unsigned long int		n;
+	int						n;
 	int						to_allow;
+	char					*with_identifiers;
 
+	if (!(with_identifiers = ft_strdup(str)))
+		return (NULL);
 	i = 0;
-	while (str[i] && i < size_max)
+	while (with_identifiers[i] && ft_is_valid_char(with_identifiers[i]))
 	{
-		if (str[i] == '*')
+		if (with_identifiers[i] == '*')
 		{
 			i = 0;
-			n = va_arg(ap, long int);
+			n = va_arg(ap, int);
 			to_allow = ft_get_int_char_size(n);
-			str = ft_rewrite_str_value(str, n, to_allow);
+			if (!(with_identifiers = ft_rewrite_str_value(with_identifiers, n, to_allow)))
+				return (NULL);
 		}
 		i++;
 	}
-	return (str);
+	return (with_identifiers);
 }

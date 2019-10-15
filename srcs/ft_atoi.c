@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:46:40 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/11 12:26:50 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/12 13:22:59 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../incl/printf.h"
 
 static int	ft_is_space(char c)
 {

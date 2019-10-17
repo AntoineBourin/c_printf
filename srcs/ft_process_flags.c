@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:16:37 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 13:21:01 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 15:58:08 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int		ft_get_width(char *str, int i, int max_size)
 	while ((str[i] >= '0' && str[i] <= '9'))
 		i++;
 	end_ind = i;
-	min_width = malloc((end_ind - beg_ind + 1) * sizeof(char));
+	if (!(min_width = malloc((end_ind - beg_ind + 1) * sizeof(char))))
+		return (-1);
 	i = 0;
 	while (beg_ind < end_ind && i < max_size)
 	{
@@ -34,6 +35,14 @@ int		ft_get_width(char *str, int i, int max_size)
 	return (ft_atoi(min_width));
 }
 
+void	ft_process_align_space(char c, t_segment *seg)
+{
+	if (c == ' ')
+		seg->is_spaced = 1;
+	if (c == '-')
+		seg->is_left_aligned = 1;
+}
+
 void	ft_process_flags(char *str, t_segment *seg, int max_size)
 {
 	int	i;
@@ -41,10 +50,7 @@ void	ft_process_flags(char *str, t_segment *seg, int max_size)
 	i = 0;
 	while (i < max_size && str[i])
 	{
-		if (str[i] == ' ')
-			seg->is_spaced = 1;
-		if (str[i] == '-')
-			seg->is_left_aligned = 1;
+		ft_process_align_space(str[i], seg);
 		if (str[i] == '.')
 		{
 			seg->max_width = ft_get_width(str, i + 1, max_size);
@@ -52,7 +58,8 @@ void	ft_process_flags(char *str, t_segment *seg, int max_size)
 		}
 		if (str[i] >= '0' && str[i] <= '9')
 		{
-			seg->min_width = ft_get_width(str, str[i] == '0' ? i + 1 : i, max_size);
+			seg->min_width = ft_get_width(str, str[i] == '0'
+					? i + 1 : i, max_size);
 			if (str[i] == '0')
 				seg->is_filled_by_zero = 1;
 			while (str[i] >= '0' && str[i] <= '9')

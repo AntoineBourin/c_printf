@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 13:36:23 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 10:30:45 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 15:39:34 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_fillout_buffer(int reset, int add_one)
 		count++;
 	if (reset == 1)
 	{
-		write(1, g_buff, ft_get_buffer_size());		
+		write(1, g_buff, ft_get_buffer_size());
 		temp = count + ft_get_buffer_size();
 		count = 0;
 		ft_reset_buffer();

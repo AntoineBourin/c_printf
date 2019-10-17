@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:15:53 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 11:32:08 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 17:26:39 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void		ft_float_fill_blanks(char *str, t_segment *seg, int is_negative)
 			seg->min_width--;
 		while (i < (seg->min_width - max_width))
 		{
-			ft_buffer_fillin(seg->is_filled_by_zero && !seg->is_left_aligned ? '0' : ' ');
+			ft_buffer_fillin(seg->is_filled_by_zero
+				&& !seg->is_left_aligned ? '0' : ' ');
 			i++;
 		}
 	}
@@ -46,24 +47,31 @@ static char		*ft_catch_infinity_nan_cases(double f)
 	return (NULL);
 }
 
-void			ft_convert_f(t_segment *seg, t_converter *convert, va_list ap)
+static char		*ft_init_float_segment(t_segment *seg, double *f)
 {
-	double			f;
-	int				i;
-	char			*res;
+	char	*res;
 
-	i = 0;
-	if (!seg || !convert)
-		return ;
-	f = va_arg(ap, double);
 	if (seg->max_width == -1)
 		seg->max_width = 6;
-	if ((res = ft_catch_infinity_nan_cases(f)))
+	if ((res = ft_catch_infinity_nan_cases(*f)))
 	{
 		seg->max_width = 0;
 		seg->is_filled_by_zero = 0;
-		f = 0;
+		if (f)
+			*f = 0;
 	}
+	return (res);
+}
+
+void			ft_convert_f(t_segment *seg, t_converter *convert, va_list ap)
+{
+	double			f;
+	char			*res;
+
+	if (!seg || !convert)
+		return ;
+	f = va_arg(ap, double);
+	res = ft_init_float_segment(seg, &f);
 	if (!res)
 		if (!(res = ft_ftoa(f, seg->max_width)))
 			return ;

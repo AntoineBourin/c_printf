@@ -6,20 +6,20 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 11:34:59 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/12 13:26:51 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 15:54:20 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/printf.h"
 
-static void		ft_fill_result(char *result, unsigned long int nb, int is_minus, int char_nb)
+static void		ft_fill_result(char *result, unsigned long int nb,
+					int is_minus, int char_nb)
 {
 	long long int		n;
 	char				*hex;
 
-	hex = malloc(17 * sizeof(char));
-	hex = "0123456789abcdef";
-	
+	if (!(hex = ft_strdup("0123456789abcdef")))
+		return ;
 	n = nb;
 	if (is_minus)
 	{
@@ -34,6 +34,7 @@ static void		ft_fill_result(char *result, unsigned long int nb, int is_minus, in
 		char_nb--;
 	}
 	result[char_nb] = hex[n % 16];
+	free(hex);
 }
 
 char			*ft_itoa_hex(unsigned long int n)

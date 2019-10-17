@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 11:34:59 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/15 08:47:57 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 15:54:01 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,3 @@ char			*ft_itoa(int n)
 	ft_fill_result(result, n, is_minus, char_nb);
 	return (result);
 }
-

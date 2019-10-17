@@ -6,13 +6,14 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 11:34:59 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/15 08:52:19 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 16:22:23 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/printf.h"
 
-static void		ft_fill_unsigned_result(char *result, unsigned int nb, int char_nb)
+static void			ft_fill_unsigned_result(char *result,
+	unsigned int nb, int char_nb)
 {
 	result[char_nb + 1] = '\0';
 	while (nb >= 10)
@@ -24,7 +25,7 @@ static void		ft_fill_unsigned_result(char *result, unsigned int nb, int char_nb)
 	result[char_nb] = (nb % 10) + 48;
 }
 
-char			*ft_uitoa(unsigned int n)
+char				*ft_uitoa(unsigned int n)
 {
 	int				char_nb;
 	char			*result;
@@ -42,4 +43,3 @@ char			*ft_uitoa(unsigned int n)
 	ft_fill_unsigned_result(result, n, char_nb);
 	return (result);
 }
-

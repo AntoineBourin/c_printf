@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:11:01 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 11:08:29 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 17:07:19 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				ft_fill_blanks(char *result, t_segment *seg, int is_zero);
 void				ft_convert_percent(t_segment *seg, t_converter *convert, va_list ap);
 void				ft_convert_n(t_segment *seg, t_converter *convert, va_list ap);
 void				ft_convert_f(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_x_X(t_segment *seg, t_converter *convert, va_list ap);
+void				ft_convert_x(t_segment *seg, t_converter *convert, va_list ap);
 void				ft_convert_u(t_segment *seg, t_converter *convert, va_list ap);
 void				ft_convert_d_i(t_segment *seg, t_converter *convert, va_list ap);
 void				ft_convert_s(t_segment *seg, t_converter *convert, va_list ap);

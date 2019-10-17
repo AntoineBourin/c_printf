@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_free.c                                   :+:      :+:    :+:  */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 18:37:31 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/16 15:05:26 by abourin          ###   ########.fr       */
+/*   Created: 2019/10/17 16:06:37 by abourin           #+#    #+#             */
+/*   Updated: 2019/10/17 17:15:53 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/printf.h"
 
-static void		ft_free_before_exit(char const *s1, char const *s2)
+static char		*ft_free_before_exit(char const *s1, char const *s2)
 {
-	free((void *)s1);
-	free((void *)s2);
+	if (s1)
+		free((void *)s1);
+	if (s2)
+		free((void *)s2);
+	return (NULL);
 }
 
 char			*ft_strjoin_free(char const *s1, char sep, char const *s2)
@@ -30,10 +33,7 @@ char			*ft_strjoin_free(char const *s1, char sep, char const *s2)
 	len = ft_strlen(s1);
 	len += ft_strlen(s2);
 	if (!(result = malloc((len + 2) * sizeof(char))))
-	{
-		ft_free_before_exit(s1, s2);
-		return (NULL);
-	}
+		return (ft_free_before_exit(s1, s2));
 	while (s1[++j])
 	{
 		result[i] = s1[j];
@@ -47,6 +47,7 @@ char			*ft_strjoin_free(char const *s1, char sep, char const *s2)
 		i++;
 	}
 	result[i] = '\0';
-	ft_free_before_exit(s1, s2);
+	free((void *)s2);
+	free((void *)s1);
 	return (result);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_x_X.c                                   :+:      :+:    :+:   */
+/*   ft_convert_x.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 09:18:50 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/16 17:24:19 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 18:02:43 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/printf.h"
 
-void	ft_convert_x_X(t_segment *seg, t_converter *convert, va_list ap)
+void	ft_convert_x(t_segment *seg, t_converter *convert, va_list ap)
 {
 	unsigned int		n;
 	char				*base;
@@ -21,21 +21,21 @@ void	ft_convert_x_X(t_segment *seg, t_converter *convert, va_list ap)
 	if (!seg || !convert)
 		return ;
 	n = va_arg(ap, unsigned int);
-	if (n == 0 && seg->max_width == 0)
+	if (!(base = ft_strdup(convert->conversion == 'X'
+			? "0123456789ABCDEF" : "0123456789abcdef")))
 		return ;
-	if (!(base = malloc(16 * sizeof(char))))
-		return ;
-	if (convert->conversion == 'X')
-		base = "0123456789ABCDEF";
-	else
-		base = "0123456789abcdef";
 	if (!(result = ft_uitoa_base(n, base)))
+	{
+		free(base);
 		return ;
+	}
 	if (!seg->is_left_aligned)
-		ft_fill_int_blanks(result, seg);
+		ft_fill_int_blanks(n == 0 && seg->max_width == 0 ? "" : result, seg);
 	ft_process_max_width(result, seg);
-	ft_buffer_str_fillin(result);
+	if (n != 0 || seg->max_width != 0)
+		ft_buffer_str_fillin(result);
 	if (seg->is_left_aligned)
-		ft_fill_int_blanks(result, seg);
+		ft_fill_int_blanks(n == 0 && seg->max_width == 0 ? "" : result, seg);
+	free(base);
 	free(result);
 }

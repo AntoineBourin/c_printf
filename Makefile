@@ -6,7 +6,7 @@
 #    By: abourin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 13:55:47 by abourin           #+#    #+#              #
-#    Updated: 2019/10/17 13:59:50 by abourin          ###   ########.fr        #
+#    Updated: 2019/10/17 15:50:39 by abourin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -28,7 +28,7 @@ SRCS = srcs/ft_printf.c \
 	srcs/ft_convert_d_i.c \
 	srcs/ft_convert_u.c \
 	srcs/ft_uitoa.c \
-	srcs/ft_convert_x_X.c \
+	srcs/ft_convert_x.c \
 	srcs/ft_uitoa_base.c \
 	srcs/ft_convert_n.c \
 	srcs/ft_ftoa.c \

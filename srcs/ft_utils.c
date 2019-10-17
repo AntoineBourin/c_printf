@@ -6,13 +6,13 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:57:00 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/16 17:31:20 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 16:21:56 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/printf.h"
 
-void    ft_fill_blanks(char *result, t_segment *seg, int is_zero)
+void		ft_fill_blanks(char *result, t_segment *seg, int is_zero)
 {
 	int i;
 
@@ -23,7 +23,7 @@ void    ft_fill_blanks(char *result, t_segment *seg, int is_zero)
 		|| (seg->min_width > seg->max_width && seg->max_width != -1))
 	{
 		while (seg->min_width > ((int)ft_strlen(result) + i)
-			   || (seg->min_width > (seg->max_width + i) && seg->max_width != -1))
+		|| (seg->min_width > (seg->max_width + i) && seg->max_width != -1))
 		{
 			ft_buffer_fillin(is_zero ? '0' : ' ');
 			i++;
@@ -31,12 +31,12 @@ void    ft_fill_blanks(char *result, t_segment *seg, int is_zero)
 	}
 }
 
-void	ft_putchar(char c)
+void		ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int n)
+void		ft_putnbr(int n)
 {
 	long int	nb;
 

@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:35:18 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/16 17:45:33 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 15:51:13 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_converter		*ft_get_converter(char conv)
 	if (conv == 'u')
 		convert->converter = &ft_convert_u;
 	if (conv == 'x' || conv == 'X')
-		convert->converter = &ft_convert_x_X;
+		convert->converter = &ft_convert_x;
 	if (conv == 'f')
 		convert->converter = &ft_convert_f;
 	if (conv == '%')

@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 17:07:11 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 13:12:23 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 17:27:26 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ char	*ft_get_after_s(intmax_t after, int precision, int zero_to_add)
 	int		prec;
 
 	prec = precision;
-	result = malloc(sizeof(char) * prec + 2);
+	if (!(result = malloc(sizeof(char) * prec + 2)))
+		return (NULL);
 	result[prec + 1] = '\0';
-	while (zero_to_add)
+	while (zero_to_add--)
 	{
 		result[precision] = '0';
-		zero_to_add--;
 		precision--;
 	}
 	while (after >= 10)
@@ -62,6 +62,17 @@ char	*ft_get_after_dot(long double after, int precision)
 	return (ft_get_after_s(i, prec - 1, precision));
 }
 
+void	ft_write_cbefore(char **cbefore, int len, intmax_t n)
+{
+	while (n >= 10)
+	{
+		(*cbefore)[len - 1] = (n % 10) + '0';
+		n /= 10;
+		len--;
+	}
+	(*cbefore)[len - 1] = (n % 10) + '0';
+}
+
 char	*ft_get_real(intmax_t n)
 {
 	char		*cbefore;
@@ -84,41 +95,33 @@ char	*ft_get_real(intmax_t n)
 	cbefore[total_len] = '\0';
 	if (n < 0)
 		n *= -1;
-	while (n >= 10)
-	{
-		cbefore[len - 1] = (n % 10) + '0';
-		n /= 10;
-		len--;
-	}
-	cbefore[len - 1] = (n % 10) + '0';
+	ft_write_cbefore(&cbefore, len, n);
 	return (cbefore);
 }
 
 char	*ft_ftoa(double f, int precision)
 {
-	long double		before;
 	long double		after;
 	intmax_t		n;
 	char			*cbefore;
 	char			*cafter;
 
 	n = (long double)f;
-	before = f;
 	after = f - n;
-	before -= after;
 	if (precision != 0)
 	{
 		if (!(cafter = ft_get_after_dot(after, precision)))
-			return (0);
+			return (NULL);
 		if (!(cbefore = ft_get_real(n)))
-			return (0);
+			return (NULL);
 		return (ft_strjoin_free(cbefore, '.', cafter));
 	}
 	else
 	{
-		n = f > 0 ? (intmax_t)(f + 0.5) : (intmax_t)(f - 0.5); 
+		if (n % 2 != 0)
+			n = (long double)f >= 0 ? (intmax_t)(f + 0.50) : (intmax_t)(f - 0.50);
 		if (!(cbefore = ft_get_real(n)))
-			return (0);
+			return (NULL);
 		return (cbefore);
 	}
 }

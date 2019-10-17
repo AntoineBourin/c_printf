@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 11:34:59 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 15:54:01 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 18:56:26 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void		ft_fill_result(char *result, int nb, int is_minus, int char_nb)
 		result[0] = '-';
 		n = n * -1;
 	}
-	result[char_nb + 1] = '\0';
+	result[char_nb] = '\0';
 	while (n >= 10)
 	{
-		result[char_nb] = (n % 10) + 48;
+		result[char_nb - 1] = (n % 10) + 48;
 		n = n / 10;
 		char_nb--;
 	}
-	result[char_nb] = (n % 10) + 48;
+	result[char_nb - 1] = (n % 10) + 48;
 }
 
 char			*ft_itoa(int n)
@@ -39,7 +39,7 @@ char			*ft_itoa(int n)
 	int				is_minus;
 	char			*result;
 
-	char_nb = 0;
+	char_nb = 1;
 	nb = n;
 	if (nb < 0)
 	{

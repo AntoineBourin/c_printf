@@ -1,0 +1,18 @@
+TEST : % d, 0xff11ff
+TEST : hello % .d this is a test, 0
+TEST : %.u, 0
+TEST : %.0x, 0
+TEST : %-12c, '\n'
+TEST : %s, NULL
+TEST : %.2s, NULL
+TEST : %10s, NULL
+TEST : %12%
+TEST : %-4%
+TEST : %017%
+ft_printf("%-2.0d\n", 0, 0);
+0x0 | 100 | A   $$
+ft_printf("%*p | %*d | %-*c\n", 6, NULL, 0, 100, 4, 65);
+\0
+inf -inf
+nan
+ft_printf("%20.0f\n", 0.0 / 0.0);

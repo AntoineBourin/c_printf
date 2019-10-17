@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:48:28 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/12 13:23:32 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 11:14:41 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strdup(const char *s1)
 	int			i;
 
 	i = 0;
+	if (!s1)
+		return (NULL);
 	size = ft_strlen(s1);
 	if (!(s2 = malloc((size + 1) * sizeof(char))))
 		return (NULL);

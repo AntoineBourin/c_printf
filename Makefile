@@ -6,12 +6,11 @@
 #    By: abourin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 13:55:47 by abourin           #+#    #+#              #
-#    Updated: 2019/10/15 17:33:04 by abourin          ###   ########.fr        #
+#    Updated: 2019/10/17 13:59:50 by abourin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-SRCS = srcs/ft_strdup.c \
-	srcs/ft_printf.c \
+SRCS = srcs/ft_printf.c \
 	srcs/ft_itoa_hex.c \
 	srcs/ft_utils.c \
 	srcs/ft_conv_flags_valid.c \
@@ -32,7 +31,11 @@ SRCS = srcs/ft_strdup.c \
 	srcs/ft_convert_x_X.c \
 	srcs/ft_uitoa_base.c \
 	srcs/ft_convert_n.c \
-	srcs/ft_ftoa.c
+	srcs/ft_ftoa.c \
+	srcs/ft_convert_f.c \
+	srcs/ft_strjoin_free.c \
+	srcs/ft_convert_percent.c \
+	srcs/ft_strdup.c \
 
 OBJS = ${SRCS:.c=.o}
 
@@ -53,7 +56,8 @@ display: ${NAME}
 		@${CC} ${CFLAGS} -I${INCL} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-			@${CC} ${CFLAGS} -I${INCL} -o ${NAME} ${OBJS}
+			ar rc libftprintf.a ${OBJS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} -fsanitize=address -g3
 
 all: ${NAME}
 

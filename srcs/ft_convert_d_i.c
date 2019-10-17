@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:34:18 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/15 15:47:58 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 08:46:12 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,19 @@ void	ft_convert_d_i(t_segment *seg, t_converter *convert, va_list ap)
 	if (!seg || !convert)
 		return ;
 	n = va_arg(ap, int);
-	if (seg->max_width == 0 && n == 0)
-		return ;
 	if (!(res = ft_itoa(n)))
 		return ;
 	if (n < 0 && (seg->is_filled_by_zero))
 		ft_buffer_fillin('-');
 	if (!seg->is_left_aligned)
-		ft_fill_int_blanks(res, seg);
+		ft_fill_int_blanks(seg->max_width == 0 && n == 0 ? "" : res, seg);
 	if (n < 0 && seg->max_width > (int)ft_strlen(res) - 1)
 		ft_buffer_fillin('-');
 	ft_process_max_width(res, seg);
-	ft_buffer_str_fillin(n < 0
+	if (seg->max_width != 0 || n != 0)
+		ft_buffer_str_fillin(n < 0
 		&& (seg->is_filled_by_zero || seg->max_width > (int)ft_strlen(res) - 1) ? res + 1 : res);
 	if (seg->is_left_aligned)
-		ft_fill_int_blanks(res, seg);
+		ft_fill_int_blanks(seg->max_width == 0 && n == 0 ? "" : res, seg);
 	free(res);
 }

@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:41:00 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/15 09:45:24 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/16 17:23:17 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_convert_u(t_segment *seg, t_converter *convert, va_list ap)
 	if (!seg || !convert)
 		return ;
 	n = va_arg(ap, unsigned int);
+	if (n == 0 && seg->max_width == 0)
+		return ;
 	if (!(res = ft_uitoa(n)))
 		return ;
 	if (!seg->is_left_aligned)

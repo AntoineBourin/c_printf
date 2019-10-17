@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:57:00 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/15 13:01:41 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/16 17:31:20 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,6 @@ void    ft_fill_blanks(char *result, t_segment *seg, int is_zero)
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
 }
 
 void	ft_putnbr(int n)

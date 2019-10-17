@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 08:51:37 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/15 15:55:13 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/16 17:15:56 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int		ft_is_conversion_specifier(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd'
 		|| c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'n'
-		|| c == '%')
+		|| c == '%' || c == 'f')
 		return (1);
 	return (0);
 }
@@ -25,7 +25,7 @@ int		ft_is_valid_char(char c)
 		return (1);
 	if (c >= '0' && c <= '9')
 		return (1);
-	if (c == '-' || c == '.' || c == '*')
+	if (c == '-' || c == '.' || c == '*' || c == ' ')
 		return (1);
 	return (0);
 }
@@ -52,7 +52,7 @@ char	ft_get_current_conv(char *str)
 			return (0);
 		if (*str == 'c' || *str == 's' || *str == 'p' || *str == 'd'
 			|| *str == 'i' || *str == 'u' || *str == 'x' || *str == 'X'
-			|| *str == 'n' || *str == '%')
+			|| *str == 'n' || *str == '%' || *str == 'f')
 			return (*str);
 		str++;
 	}

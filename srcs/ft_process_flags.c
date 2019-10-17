@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:16:37 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/15 12:59:00 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/17 13:21:01 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	ft_process_flags(char *str, t_segment *seg, int max_size)
 	int	i;
 
 	i = 0;
-	while (i <= max_size)
+	while (i < max_size && str[i])
 	{
+		if (str[i] == ' ')
+			seg->is_spaced = 1;
 		if (str[i] == '-')
 			seg->is_left_aligned = 1;
 		if (str[i] == '.')

@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:34:18 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/18 15:42:30 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 17:08:09 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ void	ft_process_max_width(char *str, t_segment *seg)
 	}
 }
 
+void	ft_add_spaces(int n, t_segment *seg)
+{
+	if (n >= 0 && seg->is_spaced)
+	{
+		ft_buffer_fillin(' ');
+	}
+}
+
 void	ft_convert_d_i(t_segment *seg, t_converter *convert, va_list ap)
 {
 	int		n;
@@ -69,8 +77,7 @@ void	ft_convert_d_i(t_segment *seg, t_converter *convert, va_list ap)
 	n = va_arg(ap, int);
 	if (!(res = ft_itoa(n)))
 		return ;
-	if (n >= 0 && seg->is_spaced)
-		ft_buffer_fillin(' ');
+	ft_add_spaces(n, seg);
 	if (n < 0 && ((seg->min_width < (int)ft_strlen(res))
 		|| (seg->max_width == -1 && seg->is_filled_by_zero)))
 		ft_buffer_fillin('-');

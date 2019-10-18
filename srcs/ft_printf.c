@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:12:08 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/18 15:39:47 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 17:32:13 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int				ft_printf(const char *str, ...)
 	int			i;
 	int			seg_size;
 
+	if (!str)
+		return (-1);
 	cs = (char *)str;
 	i = 0;
 	va_start(ap, str);

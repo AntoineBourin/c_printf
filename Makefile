@@ -6,7 +6,7 @@
 #    By: abourin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 13:55:47 by abourin           #+#    #+#              #
-#    Updated: 2019/10/18 15:37:08 by abourin          ###   ########.fr        #
+#    Updated: 2019/10/18 17:40:09 by abourin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -55,11 +55,13 @@ $(NAME):	${OBJS}
 
 all: ${NAME}
 
+bonus: ${NAME}
+
 clean:
-		@${RM} ${OBJS}
+		${RM} ${OBJS}
 
 fclean: clean
-		@${RM} ${NAME}
+		${RM} ${NAME}
 
 re:		fclean all
 

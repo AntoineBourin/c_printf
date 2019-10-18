@@ -6,9 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 08:51:37 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/16 17:15:56 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:40:21 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../ft_printf.h"
 
 int		ft_is_conversion_specifier(char c)
 {

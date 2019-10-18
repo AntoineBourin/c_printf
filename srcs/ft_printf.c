@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:12:08 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 20:42:32 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:39:47 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 t_segment		*ft_init_segment(int index)
 {
@@ -56,7 +56,8 @@ int				ft_process_segment(char *str, va_list ap, int index)
 	if (!(conv = ft_get_current_conv(str)))
 		return (ft_free_segment(seg, str));
 	if (seg->is_spaced && conv != 's' && conv != '%'
-		&& conv != 'd' && conv != 'i')
+		&& conv != 'd' && conv != 'i' && conv != 'c' && conv != 'x'
+		&& conv != 'X' && conv != 'u' && conv != 'p')
 		ft_buffer_fillin(' ');
 	ft_process_conversion(conv, seg, ap);
 	free(seg);
@@ -88,27 +89,4 @@ int				ft_printf(const char *str, ...)
 	}
 	va_end(ap);
 	return (ft_fillout_buffer(1, 0));
-}
-
-int			main(void)
-{
-	//int t;
-	//printf("%40.50d\n", 50);
-	//t = 0;
-	//ft_printf("%40.50d\n", 50);
-	/*ft_printf("%d\n", -589);
-	ft_printf("%-4d\n", -2464);
-	ft_printf("%.5d\n", -2372);
-	printf("ft_printf ret = %d\n", ft_printf("%%p::[%010d]\n", -8473));
-	printf("ft_printf ret = %d\n", ft_printf("%%p::[%10d]\n", -8473));
-	printf("ft_printf ret = %d\n", ft_printf("%%p::[%.5d]\n", -8473));
-	printf("ft_printf ret = %d\n", ft_printf("%%p::[%01.1d]\n", -8473));
-	printf("ft_printf ret = %d\n", ft_printf("%%p::[%010.1d]\n", -8473));
-	printf("ft_printf ret = %d\n", ft_printf("%%p::[%01.50d]\n", -8473));
-	printf("ft_printf ret = %d\n", ft_printf("%%p::[%1.50d]\n", -8473));
-	printf("printf ret = %d\n", printf("%%p::[%0100.50d]\n", -8473));*/
-	ft_printf("% i\n", -60);
-	printf("real% i\n", -60);
-	//printf("%1p\n", &t);
-	//ft_printf("%1p\n", &t);
 }

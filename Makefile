@@ -6,7 +6,7 @@
 #    By: abourin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 13:55:47 by abourin           #+#    #+#              #
-#    Updated: 2019/10/17 15:50:39 by abourin          ###   ########.fr        #
+#    Updated: 2019/10/18 15:37:08 by abourin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,28 +41,22 @@ OBJS = ${SRCS:.c=.o}
 
 RM = rm -f
 
-NAME = ft_printf
-
-INCL = incl
+NAME = libftprintf.a
 
 CC = GCC
 
-CFLAGS = -Wall -Wextra
-
-display: ${NAME}
-		./${NAME} | cat -e
+CFLAGS = -Wall -Wextra -Werror
 
 .c .o:
-		@${CC} ${CFLAGS} -I${INCL} -c $< -o ${<:.c=.o}
+		@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-			ar rc libftprintf.a ${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} -fsanitize=address -g3
+			ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
 
 clean:
-		@${RM} ${OBJS} ${OBJSBONUS}
+		@${RM} ${OBJS}
 
 fclean: clean
 		@${RM} ${NAME}

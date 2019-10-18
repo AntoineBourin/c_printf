@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:57:00 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 16:21:56 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:39:00 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 void		ft_fill_blanks(char *result, t_segment *seg, int is_zero)
 {
@@ -29,6 +29,22 @@ void		ft_fill_blanks(char *result, t_segment *seg, int is_zero)
 			i++;
 		}
 	}
+}
+
+intmax_t	ft_get_round_number(double f, long double after)
+{
+	intmax_t	n;
+
+	n = (long double)f;
+	if (n % 2 == 0 && after > 0.50)
+		n = (long double)f >= 0 ? (intmax_t)(f + 0.50) : (intmax_t)(f - 0.50);
+	else if (n % 2 == 0 && after < -0.50)
+		n = (long double)f >= 0 ? (intmax_t)(f + 0.50) : (intmax_t)(f - 0.50);
+	else if (n % 2 != 0)
+		n = (long double)f >= 0 ? (intmax_t)(f + 0.50) : (intmax_t)(f - 0.50);
+	else
+		n = (long double)f;
+	return (n);
 }
 
 void		ft_putchar(char c)

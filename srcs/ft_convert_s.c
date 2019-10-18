@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 10:02:06 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 16:28:40 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:42:43 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 char	*ft_generate_null_string(void)
 {

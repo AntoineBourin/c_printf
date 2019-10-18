@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:06:37 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 17:15:53 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:39:57 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 static char		*ft_free_before_exit(char const *s1, char const *s2)
 {
@@ -19,6 +19,12 @@ static char		*ft_free_before_exit(char const *s1, char const *s2)
 	if (s2)
 		free((void *)s2);
 	return (NULL);
+}
+
+static void		ft_get_len(size_t *len, char const *s1, char const *s2)
+{
+	*len = ft_strlen(s1);
+	*len += ft_strlen(s2);
 }
 
 char			*ft_strjoin_free(char const *s1, char sep, char const *s2)
@@ -30,8 +36,7 @@ char			*ft_strjoin_free(char const *s1, char sep, char const *s2)
 
 	j = -1;
 	i = 0;
-	len = ft_strlen(s1);
-	len += ft_strlen(s2);
+	ft_get_len(&len, s1, s2);
 	if (!(result = malloc((len + 2) * sizeof(char))))
 		return (ft_free_before_exit(s1, s2));
 	while (s1[++j])
@@ -47,7 +52,6 @@ char			*ft_strjoin_free(char const *s1, char sep, char const *s2)
 		i++;
 	}
 	result[i] = '\0';
-	free((void *)s2);
-	free((void *)s1);
+	ft_free_before_exit(s1, s2);
 	return (result);
 }

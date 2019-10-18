@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 11:34:59 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 18:56:26 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:42:55 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 static void		ft_fill_result(char *result, int nb, int is_minus, int char_nb)
 {

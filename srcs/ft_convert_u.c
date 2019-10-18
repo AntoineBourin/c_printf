@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:41:00 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 17:58:03 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:38:23 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 void	ft_convert_u(t_segment *seg, t_converter *convert, va_list ap)
 {
@@ -20,6 +20,8 @@ void	ft_convert_u(t_segment *seg, t_converter *convert, va_list ap)
 	if (!seg || !convert)
 		return ;
 	n = va_arg(ap, unsigned int);
+	if (seg->is_spaced)
+		seg->is_spaced = 0;
 	if (!(res = ft_uitoa(n)))
 		return ;
 	if (!seg->is_left_aligned)

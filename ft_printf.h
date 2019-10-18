@@ -6,12 +6,12 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:11:01 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 17:07:19 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:46:23 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # define BUFFER_SIZE 4096
 # include <stdarg.h>
 # include <stdlib.h>
@@ -40,6 +40,7 @@ typedef struct		s_converter
 
 static char			g_buff[BUFFER_SIZE];
 
+intmax_t			ft_get_round_number(double f, long double after);
 char				*ft_strdup(char const *s1);
 char				*ft_strjoin_free(char const *s1, char sep, char const *s2);
 char				*ft_get_real(intmax_t n);
@@ -50,17 +51,27 @@ char				*ft_itoa(int n);
 void				ft_process_max_width(char *str, t_segment *seg);
 void				ft_fill_int_blanks(char *str, t_segment *seg);
 void				ft_fill_blanks(char *result, t_segment *seg, int is_zero);
-void				ft_convert_percent(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_n(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_f(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_x(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_u(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_d_i(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_s(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_c(t_segment *seg, t_converter *convert, va_list ap);
-void				ft_convert_p(t_segment *seg, t_converter *convert, va_list ap);
+void				ft_convert_percent(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_n(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_f(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_x(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_u(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_d_i(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_s(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_c(t_segment *seg,
+							t_converter *convert, va_list ap);
+void				ft_convert_p(t_segment *seg,
+							t_converter *convert, va_list ap);
 t_converter			*ft_get_converter(char conv);
-void				ft_process_conversion(char conv, t_segment *seg, va_list ap);
+void				ft_process_conversion(char conv,
+							t_segment *seg, va_list ap);
 void				ft_reset_buffer(void);
 int					ft_fillout_buffer(int reset, int add_one);
 void				ft_buffer_str_fillin(char *str);

@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 17:07:11 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 17:27:26 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:41:50 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 char	*ft_get_after_s(intmax_t after, int precision, int zero_to_add)
 {
@@ -118,8 +118,7 @@ char	*ft_ftoa(double f, int precision)
 	}
 	else
 	{
-		if (n % 2 != 0)
-			n = (long double)f >= 0 ? (intmax_t)(f + 0.50) : (intmax_t)(f - 0.50);
+		n = ft_get_round_number(f, after);
 		if (!(cbefore = ft_get_real(n)))
 			return (NULL);
 		return (cbefore);

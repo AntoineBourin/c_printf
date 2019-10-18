@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:16:37 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 15:58:08 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:42:05 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 int		ft_get_width(char *str, int i, int max_size)
 {

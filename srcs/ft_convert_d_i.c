@@ -6,11 +6,11 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:34:18 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/17 20:41:52 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/18 15:42:30 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/printf.h"
+#include "../ft_printf.h"
 
 void	ft_fill_int_blanks(char *str, t_segment *seg)
 {
@@ -19,6 +19,8 @@ void	ft_fill_int_blanks(char *str, t_segment *seg)
 	int		max_width;
 
 	len = (int)ft_strlen(str);
+	if (str[0] != '-' && seg->is_spaced)
+		len++;
 	i = 0;
 	if (seg->min_width > 0)
 	{
@@ -44,6 +46,8 @@ void	ft_process_max_width(char *str, t_segment *seg)
 	len = ft_strlen(str);
 	if (str[0] == '-')
 		len--;
+	else if (seg->is_spaced)
+		len++;
 	i = 0;
 	if (seg->max_width != -1)
 	{
@@ -67,11 +71,13 @@ void	ft_convert_d_i(t_segment *seg, t_converter *convert, va_list ap)
 		return ;
 	if (n >= 0 && seg->is_spaced)
 		ft_buffer_fillin(' ');
-	if (n < 0 && ((seg->min_width < (int)ft_strlen(res)) || (seg->max_width == -1 && seg->is_filled_by_zero)))
+	if (n < 0 && ((seg->min_width < (int)ft_strlen(res))
+		|| (seg->max_width == -1 && seg->is_filled_by_zero)))
 		ft_buffer_fillin('-');
 	if (!seg->is_left_aligned)
 		ft_fill_int_blanks(seg->max_width == 0 && n == 0 ? "" : res, seg);
-	if (n < 0 && (seg->min_width >= (int)ft_strlen(res)) && (!seg->is_filled_by_zero || seg->max_width != -1))
+	if (n < 0 && (seg->min_width >= (int)ft_strlen(res))
+		&& (!seg->is_filled_by_zero || seg->max_width != -1))
 		ft_buffer_fillin('-');
 	ft_process_max_width(res, seg);
 	if (seg->max_width != 0 || n != 0)

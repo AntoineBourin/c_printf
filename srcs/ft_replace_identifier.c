@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 13:54:18 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/18 15:43:05 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/21 15:20:04 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ char	*ft_replace_identifier(char *str, va_list ap)
 	i = 0;
 	while (with_identifiers[i] && ft_is_valid_char(with_identifiers[i]))
 	{
+		if (i != 0 && str[i] == '%')
+			return (with_identifiers);
 		if (with_identifiers[i] == '*')
 		{
 			i = 0;

@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:16:37 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/18 16:58:35 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/21 15:17:19 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_get_width(char *str, int i, int max_size, t_segment *seg)
 	if (!(min_width = malloc((end_ind - beg_ind + 1) * sizeof(char))))
 		return (-1);
 	i = 0;
-	while (beg_ind < end_ind && i < max_size)
+	while (beg_ind < end_ind)
 	{
 		min_width[i] = str[beg_ind];
 		i++;

@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 13:54:18 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/21 15:20:04 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/22 10:53:55 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,36 @@
 
 int		ft_get_int_char_size(int n)
 {
-	int		count;
+	int			count;
+	long int	nb;
 
+	nb = n;
 	count = 1;
-	while (n >= 10)
+	if (nb < 0)
 	{
-		n = n / 10;
+		nb = nb * -1;
+		count++;
+	}
+	while (nb >= 10)
+	{
+		nb = nb / 10;
 		count++;
 	}
 	return (count);
 }
 
-int		ft_rewrite_asterix(char **result, int to_allow, int n, int *j)
+int		ft_rewrite_asterix(char **result, int to_allow, long int n, int *j)
 {
 	int		x;
+	int		is_min;
 
 	x = to_allow;
+	is_min = 0;
+	if (n < 0)
+	{
+		n = n * -1;
+		is_min = 1;
+	}
 	while (n >= 10)
 	{
 		(*result)[*j + x - 1] = (n % 10) + 48;
@@ -37,6 +51,11 @@ int		ft_rewrite_asterix(char **result, int to_allow, int n, int *j)
 		x--;
 	}
 	(*result)[*j + x - 1] = (n % 10) + 48;
+	if (is_min)
+	{
+		x--;
+		(*result)[*j + x - 1] = '-';
+	}
 	*j = *j + to_allow;
 	return (1);
 }
@@ -81,7 +100,7 @@ char	*ft_replace_identifier(char *str, va_list ap)
 	i = 0;
 	while (with_identifiers[i] && ft_is_valid_char(with_identifiers[i]))
 	{
-		if (i != 0 && str[i] == '%')
+		if (ft_is_conversion_specifier(with_identifiers[i]))
 			return (with_identifiers);
 		if (with_identifiers[i] == '*')
 		{

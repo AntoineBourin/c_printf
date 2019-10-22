@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:11:01 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/18 17:15:26 by abourin          ###   ########.fr       */
+/*   Updated: 2019/10/22 10:22:01 by abourin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_converter
 
 static char			g_buff[BUFFER_SIZE];
 
+int					ft_is_conversion_specifier(char c);
 intmax_t			ft_get_round_number(double f, long double after);
 char				*ft_strdup(char const *s1);
 char				*ft_strjoin_free(char const *s1, char sep, char const *s2);
